@@ -14,6 +14,7 @@ namespace Labb3Models
         [Required]
         public string URL { get; set; }
 
+        public int InterestId { get; set; }
         public Interest Interest { get; set; }
 
     }
