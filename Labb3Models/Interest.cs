@@ -18,5 +18,7 @@ namespace Labb3Models
         public string Description { get; set; }
 
         public Person Person { get; set; }
+
+        public ICollection<Link> Link { get; set; }
     }
 }
