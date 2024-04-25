@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Labb3Models
 {
-    internal class Interest
+    public class Interest
     {
         [Key]
         public int InterestId { get; set; }

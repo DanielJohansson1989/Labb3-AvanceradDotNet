@@ -13,5 +13,7 @@ namespace Labb3Models
         [StringLength(20)]
         public string LastName { get; set; }
         public string? Phone { get; set; }
+
+        public ICollection<Interest> Interest { get; set; }
     }
 }
