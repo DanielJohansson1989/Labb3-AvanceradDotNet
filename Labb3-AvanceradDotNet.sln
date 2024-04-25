@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Labb3-AvanceradDotNet", "Labb3-AvanceradDotNet\Labb3-AvanceradDotNet.csproj", "{203B06E2-F7D2-4CC0-A9B3-505EE84608B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Labb3Models", "Labb3Models\Labb3Models.csproj", "{F33B4D8A-9B6E-473F-A1D7-4BA9F111EB2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{203B06E2-F7D2-4CC0-A9B3-505EE84608B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{203B06E2-F7D2-4CC0-A9B3-505EE84608B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{203B06E2-F7D2-4CC0-A9B3-505EE84608B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F33B4D8A-9B6E-473F-A1D7-4BA9F111EB2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F33B4D8A-9B6E-473F-A1D7-4BA9F111EB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F33B4D8A-9B6E-473F-A1D7-4BA9F111EB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F33B4D8A-9B6E-473F-A1D7-4BA9F111EB2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
