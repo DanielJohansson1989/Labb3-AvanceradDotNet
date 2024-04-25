@@ -1,4 +1,7 @@
 
+using Labb3_AvanceradDotNet.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Labb3_AvanceradDotNet
 {
     public class Program
@@ -13,6 +16,8 @@ namespace Labb3_AvanceradDotNet
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddDbContext<Labb3DbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
             var app = builder.Build();
 
