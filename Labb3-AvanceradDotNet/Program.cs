@@ -1,5 +1,7 @@
 
 using Labb3_AvanceradDotNet.Data;
+using Labb3_AvanceradDotNet.Services;
+using Labb3Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Labb3_AvanceradDotNet
@@ -16,6 +18,13 @@ namespace Labb3_AvanceradDotNet
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<ILabb3<Person>, PersonRepository>();
+
+            builder.Services.AddControllers().AddJsonOptions(o => 
+            { 
+                o.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles; 
+            });
 
             builder.Services.AddDbContext<Labb3DbContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
 
