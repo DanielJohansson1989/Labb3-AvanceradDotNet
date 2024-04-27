@@ -20,6 +20,9 @@ namespace Labb3_AvanceradDotNet
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<ILabb3<Person>, PersonRepository>();
+            builder.Services.AddScoped<ILabb3<Interest>, InterestRepository>();
+            builder.Services.AddScoped<ILabb3<PersonalInterest>, PersonalInterestRepository>();
+            builder.Services.AddScoped<ILabb3<Link>, LinkRepository>();
 
             builder.Services.AddControllers().AddJsonOptions(o => 
             { 
