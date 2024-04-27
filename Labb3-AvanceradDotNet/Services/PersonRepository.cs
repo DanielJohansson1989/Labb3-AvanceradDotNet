@@ -32,12 +32,12 @@ namespace Labb3_AvanceradDotNet.Services
 
         public async Task<IEnumerable<Person>> GetAll()
         {
-            return await _dbContext.Persons.Include(p => p.Interest).ThenInclude(i => i.Link).ToListAsync();
+            return await _dbContext.Persons.ToListAsync();
         }
 
         public async Task<Person> GetById(int id)
         {
-            return await _dbContext.Persons.Include(p => p.Interest).ThenInclude(i => i.Link).FirstOrDefaultAsync(p => p.PersonId == id);
+            return await _dbContext.Persons.FirstOrDefaultAsync(p => p.PersonId == id); 
         }
 
         public async Task<Person> Update(Person entity)
