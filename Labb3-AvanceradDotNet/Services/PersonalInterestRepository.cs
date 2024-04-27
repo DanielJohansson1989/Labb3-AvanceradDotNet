@@ -13,17 +13,17 @@ namespace Labb3_AvanceradDotNet.Services
         }
         public async Task<PersonalInterest> Add(PersonalInterest newEntity)
         {
-            var result = await _dbContext.PersonalInterests.AddAsync(newEntity);
+            var result = await _dbContext.PersonalInterest.AddAsync(newEntity);
             await _dbContext.SaveChangesAsync();
             return result.Entity;
         }
 
         public async Task<PersonalInterest> Delete(int id)
         {
-            var result = await _dbContext.PersonalInterests.FirstOrDefaultAsync(p => p.PersonalInterestId ==  id);
+            var result = await _dbContext.PersonalInterest.FirstOrDefaultAsync(p => p.PersonalInterestId ==  id);
             if (result != null)
             {
-                _dbContext.PersonalInterests.Remove(result);
+                _dbContext.PersonalInterest.Remove(result);
                 await _dbContext.SaveChangesAsync();
                 return result;
             }
@@ -32,17 +32,17 @@ namespace Labb3_AvanceradDotNet.Services
 
         public async Task<IEnumerable<PersonalInterest>> GetAll()
         {
-            return await _dbContext.PersonalInterests.Include(p => p.Person).Include(p => p.Interest).ToListAsync();
+            return await _dbContext.PersonalInterest.Include(p => p.Person).Include(p => p.Interest).ToListAsync();
         }
 
-        public async Task<PersonalInterest> GetById(int id)
+        public async Task<PersonalInterest> GetById(int id) // Fixa så att den hämtar alla intressen för en person. Man ska kunna söka på person id
         {
-            return await _dbContext.PersonalInterests.Include(p => p.Person).Include(p => p.Interest).FirstOrDefaultAsync(p => p.PersonalInterestId == id);
+            return await _dbContext.PersonalInterest.Include(p => p.Person).Include(p => p.Interest).FirstOrDefaultAsync(p => p.PersonalInterestId == id);
         }
 
         public async Task<PersonalInterest> Update(PersonalInterest entity)
         {
-            var result = await _dbContext.PersonalInterests.FirstOrDefaultAsync(p => p.PersonalInterestId == entity.PersonalInterestId);
+            var result = await _dbContext.PersonalInterest.FirstOrDefaultAsync(p => p.PersonalInterestId == entity.PersonalInterestId);
             if (result != null)
             {
                 result.PersonId = entity.PersonId;
