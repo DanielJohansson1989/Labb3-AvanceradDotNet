@@ -12,6 +12,7 @@ namespace Labb3_AvanceradDotNet.Data
 
         public DbSet<Person> Persons { get; set; }
         public DbSet<Interest> Interests { get; set; }
+        public DbSet<PersonalInterest> PersonalInterests { get; set; }
         public DbSet<Link> Links { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
