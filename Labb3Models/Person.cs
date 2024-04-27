@@ -14,6 +14,6 @@ namespace Labb3Models
         public string LastName { get; set; }
         public string? Phone { get; set; }
 
-        public ICollection<Interest> Interest { get; set; }
+        public ICollection<PersonalInterest> PersonalInterest { get; set; }
     }
 }

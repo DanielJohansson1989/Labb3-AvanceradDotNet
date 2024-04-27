@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace Labb3Models
 {
-    public class Link
+    public class PersonalInterest
     {
         [Key]
-        public int LinkId { get; set; }
-        [Required]
-        public string URL { get; set; }
-
         public int PersonalInterestId { get; set; }
-        public PersonalInterest PersonalInterest { get; set; }
-
+        public int PersonId { get; set; }
+        public Person Person { get; set; }
+        public int InterestId { get; set; }
+        public Interest Interest { get; set; }
+        public ICollection<Link> Link {  get; set; }
     }
 }
