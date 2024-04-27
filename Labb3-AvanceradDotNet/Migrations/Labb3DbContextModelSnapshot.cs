@@ -33,17 +33,12 @@ namespace Labb3_AvanceradDotNet.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
                     b.HasKey("InterestId");
-
-                    b.HasIndex("PersonId");
 
                     b.ToTable("Interests");
 
@@ -52,42 +47,36 @@ namespace Labb3_AvanceradDotNet.Migrations
                         {
                             InterestId = 1,
                             Description = "Skiing is a popular winter sport that involves sliding down snow-covered slopes on long, narrow boards called skis attached to boots. It's not just about gliding down the mountain; it's a dynamic blend of athleticism, technique, and connection with nature. Skiers use a combination of gravity, momentum, and their own muscle power to navigate various terrains, from gentle slopes to steep mountainsides",
-                            PersonId = 1,
                             Title = "Skiing"
                         },
                         new
                         {
                             InterestId = 2,
                             Description = "Chess is played by two opponents on a square board divided into 64 smaller squares of alternating colors, typically black and white. Each player starts with an identical set of 16 pieces: one king, one queen, two rooks, two knights, two bishops, and eight pawns. The objective of chess is to checkmate your opponent's king.",
-                            PersonId = 1,
                             Title = "Chess"
                         },
                         new
                         {
                             InterestId = 3,
                             Description = "Surfing is a water sport where individuals ride waves on a specially designed board, known as a surfboard, typically while standing up. Surfers paddle out into the ocean, waiting for the right wave to catch, and then use their skills to balance and maneuver on the moving water. It's a dynamic and exhilarating activity that requires coordination, strength, and a deep connection with the ocean. Surfers often describe the experience as a unique blend of adrenaline, tranquility, and freedom, making it a beloved pastime for enthusiasts around the world.",
-                            PersonId = 2,
                             Title = "Surfing"
                         },
                         new
                         {
                             InterestId = 4,
                             Description = "Sailing is a recreational or competitive activity that involves navigating a watercraft, typically a sailboat, across bodies of water using the power of the wind. Sailboats are equipped with sails, which harness the wind's force to propel the vessel forward. Sailors adjust the sails and steer the boat to catch the wind effectively and control its direction.",
-                            PersonId = 2,
                             Title = "Sailing"
                         },
                         new
                         {
                             InterestId = 5,
                             Description = "Programming is the art and science of instructing computers to perform specific tasks by writing sets of instructions, known as code, in various programming languages. It involves problem-solving, logical thinking, and creativity to design, develop, and debug software applications, websites, and digital systems. Programmers use their expertise to automate processes, create innovative solutions, and shape the digital world we interact with every day.",
-                            PersonId = 3,
                             Title = "Programming"
                         },
                         new
                         {
                             InterestId = 6,
                             Description = "Fishing is a recreational or commercial activity involving the pursuit and capture of aquatic life, typically fish, using various techniques such as angling, netting, or trapping. Anglers often employ rods, reels, and bait to lure fish, while commercial fishermen use specialized equipment like trawlers or longlines to catch fish in larger quantities. It's a timeless pastime enjoyed for relaxation, challenge, and sustenance, connecting individuals with nature and the bounty of the sea or freshwater environments.",
-                            PersonId = 3,
                             Title = "Fishing"
                         });
                 });
@@ -100,7 +89,7 @@ namespace Labb3_AvanceradDotNet.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LinkId"));
 
-                    b.Property<int>("InterestId")
+                    b.Property<int>("PersonalInterestId")
                         .HasColumnType("int");
 
                     b.Property<string>("URL")
@@ -109,7 +98,7 @@ namespace Labb3_AvanceradDotNet.Migrations
 
                     b.HasKey("LinkId");
 
-                    b.HasIndex("InterestId");
+                    b.HasIndex("PersonalInterestId");
 
                     b.ToTable("Links");
 
@@ -117,61 +106,61 @@ namespace Labb3_AvanceradDotNet.Migrations
                         new
                         {
                             LinkId = 1,
-                            InterestId = 1,
+                            PersonalInterestId = 1,
                             URL = "skidresor.se"
                         },
                         new
                         {
                             LinkId = 2,
-                            InterestId = 1,
+                            PersonalInterestId = 1,
                             URL = "skistar.com"
                         },
                         new
                         {
                             LinkId = 3,
-                            InterestId = 2,
+                            PersonalInterestId = 2,
                             URL = "chess.com"
                         },
                         new
                         {
                             LinkId = 4,
-                            InterestId = 3,
+                            PersonalInterestId = 3,
                             URL = "surfers.se"
                         },
                         new
                         {
                             LinkId = 5,
-                            InterestId = 3,
+                            PersonalInterestId = 3,
                             URL = "surfskolan.se"
                         },
                         new
                         {
                             LinkId = 6,
-                            InterestId = 4,
+                            PersonalInterestId = 4,
                             URL = "varbergssegelsallskap.se"
                         },
                         new
                         {
                             LinkId = 7,
-                            InterestId = 5,
+                            PersonalInterestId = 5,
                             URL = "codecademy.com"
                         },
                         new
                         {
                             LinkId = 8,
-                            InterestId = 5,
+                            PersonalInterestId = 5,
                             URL = "w3schools.com"
                         },
                         new
                         {
                             LinkId = 9,
-                            InterestId = 6,
+                            PersonalInterestId = 6,
                             URL = "swedenfishing.com"
                         },
                         new
                         {
                             LinkId = 10,
-                            InterestId = 6,
+                            PersonalInterestId = 6,
                             URL = "fladenfishing.se"
                         });
                 });
@@ -225,36 +214,110 @@ namespace Labb3_AvanceradDotNet.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Labb3Models.Interest", b =>
+            modelBuilder.Entity("Labb3Models.PersonalInterest", b =>
                 {
-                    b.HasOne("Labb3Models.Person", "Person")
-                        .WithMany("Interest")
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("PersonalInterestId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Navigation("Person");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonalInterestId"));
+
+                    b.Property<int>("InterestId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PersonalInterestId");
+
+                    b.HasIndex("InterestId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("PersonalInterest");
+
+                    b.HasData(
+                        new
+                        {
+                            PersonalInterestId = 1,
+                            InterestId = 1,
+                            PersonId = 1
+                        },
+                        new
+                        {
+                            PersonalInterestId = 2,
+                            InterestId = 2,
+                            PersonId = 1
+                        },
+                        new
+                        {
+                            PersonalInterestId = 3,
+                            InterestId = 3,
+                            PersonId = 2
+                        },
+                        new
+                        {
+                            PersonalInterestId = 4,
+                            InterestId = 4,
+                            PersonId = 2
+                        },
+                        new
+                        {
+                            PersonalInterestId = 5,
+                            InterestId = 5,
+                            PersonId = 3
+                        },
+                        new
+                        {
+                            PersonalInterestId = 6,
+                            InterestId = 6,
+                            PersonId = 3
+                        });
                 });
 
             modelBuilder.Entity("Labb3Models.Link", b =>
                 {
-                    b.HasOne("Labb3Models.Interest", "Interest")
+                    b.HasOne("Labb3Models.PersonalInterest", "PersonalInterest")
                         .WithMany("Link")
+                        .HasForeignKey("PersonalInterestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PersonalInterest");
+                });
+
+            modelBuilder.Entity("Labb3Models.PersonalInterest", b =>
+                {
+                    b.HasOne("Labb3Models.Interest", "Interest")
+                        .WithMany("PersonalInterest")
                         .HasForeignKey("InterestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Labb3Models.Person", "Person")
+                        .WithMany("PersonalInterest")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Interest");
+
+                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("Labb3Models.Interest", b =>
                 {
-                    b.Navigation("Link");
+                    b.Navigation("PersonalInterest");
                 });
 
             modelBuilder.Entity("Labb3Models.Person", b =>
                 {
-                    b.Navigation("Interest");
+                    b.Navigation("PersonalInterest");
+                });
+
+            modelBuilder.Entity("Labb3Models.PersonalInterest", b =>
+                {
+                    b.Navigation("Link");
                 });
 #pragma warning restore 612, 618
         }
