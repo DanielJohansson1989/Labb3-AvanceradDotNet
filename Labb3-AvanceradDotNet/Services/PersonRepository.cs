@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Labb3_AvanceradDotNet.Services
 {
-    public class PersonRepository : ILabb3<Person>
+    public class PersonRepository : IPerson
     {
         private Labb3DbContext _dbContext;
         public PersonRepository(Labb3DbContext dbContext)
@@ -38,6 +38,16 @@ namespace Labb3_AvanceradDotNet.Services
         public async Task<Person> GetById(int id)
         {
             return await _dbContext.Persons.FirstOrDefaultAsync(p => p.PersonId == id); 
+        }
+
+        public async Task<Person> GetPersonAndInterests(int id)
+        {
+            return await _dbContext.Persons.Include(p => p.PersonalInterest).ThenInclude(p => p.Interest).FirstOrDefaultAsync(p => p.PersonId == id);   
+        }
+
+        public async Task<Person> GetPersonAndLinks(int id)
+        {
+            return await _dbContext.Persons.Include(p => p.PersonalInterest).ThenInclude(p => p.Link).FirstOrDefaultAsync(p => p.PersonId == id);
         }
 
         public async Task<Person> Update(Person entity)

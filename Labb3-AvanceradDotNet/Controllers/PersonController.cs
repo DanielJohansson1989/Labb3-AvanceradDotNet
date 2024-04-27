@@ -9,8 +9,8 @@ namespace Labb3_AvanceradDotNet.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
-        private ILabb3<Person> _labb;
-        public PersonController(ILabb3<Person> labb)
+        private IPerson _labb;
+        public PersonController(IPerson labb)
         {
             _labb = labb;   
         }
@@ -35,6 +35,42 @@ namespace Labb3_AvanceradDotNet.Controllers
             try
             {
                 var result = await _labb.GetById(id);
+                if (result == null)
+                {
+                    return NotFound($"Person with ID {id} could not be found in the database");
+                }
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
+
+        [HttpGet("withInterests/{id:int}")]
+        public async Task<ActionResult<Person>> GetPersonAndInterest(int id)
+        {
+            try
+            {
+                var result = await _labb.GetPersonAndInterests(id);
+                if (result == null)
+                {
+                    return NotFound($"Person with ID {id} could not be found in the database");
+                }
+                return Ok(result);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+            }
+        }
+
+        [HttpGet("withLinks/{id:int}")]
+        public async Task<ActionResult<Person>> GetPersonAndLinks(int id)
+        {
+            try
+            {
+                var result = await _labb.GetPersonAndLinks(id);
                 if (result == null)
                 {
                     return NotFound($"Person with ID {id} could not be found in the database");
