@@ -2,21 +2,22 @@
 using Labb3Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Labb3_AvanceradDotNet.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonController : ControllerBase
+    public class InterestController : ControllerBase
     {
-        private ILabb3<Person> _labb;
-        public PersonController(ILabb3<Person> labb)
+        private ILabb3<Interest> _labb;
+        public InterestController(ILabb3<Interest> labb)
         {
-            _labb = labb;   
+            _labb = labb;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllPersons()
+        public async Task<IActionResult> GetAllInterests()
         {
             try
             {
@@ -24,20 +25,19 @@ namespace Labb3_AvanceradDotNet.Controllers
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
             }
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<Person>> GetPersonById(int id)
+        public async Task<ActionResult<Interest>> GetInterstById(int id)
         {
             try
             {
                 var result = await _labb.GetById(id);
                 if (result == null)
                 {
-                    return NotFound($"Person with ID {id} could not be found in the database");
+                    return NotFound($"Interest with ID {id} could not be found in the database");
                 }
                 return Ok(result);
             }
@@ -48,56 +48,54 @@ namespace Labb3_AvanceradDotNet.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Person>> CreateNewPerson(Person newPerson)
+        public async Task<ActionResult<Interest>> CreateNewInterest(Interest newInterest)
         {
             try
             {
-                if (newPerson == null)
+                if (newInterest == null)
                 {
                     return BadRequest();
                 }
-                var createdPerson = await _labb.Add(newPerson);
-                return CreatedAtAction(nameof(GetPersonById), new { id = createdPerson.PersonId }, createdPerson);
+                var createdInterest = await _labb.Add(newInterest);
+                return CreatedAtAction(nameof(GetInterstById), new { id = createdInterest.InterestId}, createdInterest);
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error sending data to the database");
             }
         }
 
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<Person>> UpdatePerson(int id,  Person person)
+        public async Task<ActionResult<Interest>> UpdateInterest(int id, Interest interest)
         {
             try
             {
-                if (id != person.PersonId)
+                if (id != interest.InterestId)
                 {
-                    return BadRequest($"ID {id} does not match PersonId: {person.PersonId}");
+                    return BadRequest($"ID {id} does not match InterestId: {interest.InterestId}");
                 }
-                var personToUpdate = await _labb.GetById(id);
-                if (personToUpdate == null)
+                var interestToUpdate = await _labb.GetById(id);
+                if (interestToUpdate == null)
                 {
-                    return NotFound($"Person with ID {id} could not be found in database");
+                    return NotFound($"Interest with ID {id} could not be found in database");
                 }
-                return await _labb.Update(person);
+                return await _labb.Update(interest);
             }
             catch (Exception)
             {
-
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error sending data to the database");
             }
         }
 
         [HttpDelete("{id:int}")]
-        public async Task<ActionResult<Person>> DeletePerson(int id)
+        public async Task<ActionResult<Interest>> DeleteInterest(int id)
         {
             try
             {
-                var personToDelete = await _labb.GetById(id);
-                if (personToDelete == null)
+                var interestToDelete = await _labb.GetById(id);
+                if (interestToDelete == null)
                 {
-                    return NotFound($"Person with ID { id} could not be found in database");
+                    return NotFound($"Interest with ID {id} could not be found in database");
                 }
                 return await _labb.Delete(id);
             }
