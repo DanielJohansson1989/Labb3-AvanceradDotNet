@@ -23,9 +23,9 @@ namespace Labb3_AvanceradDotNet.Controllers
             {
                 return Ok(await _labb.GetAll());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -41,9 +41,9 @@ namespace Labb3_AvanceradDotNet.Controllers
                 }
                 return Ok(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -59,9 +59,9 @@ namespace Labb3_AvanceradDotNet.Controllers
                 var createdEntity = await _labb.Add(newEntity);
                 return CreatedAtAction(nameof(GetSinglePersonWithInterests), new { id = createdEntity.PersonalInterestId }, createdEntity);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error sending data to the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -81,9 +81,9 @@ namespace Labb3_AvanceradDotNet.Controllers
                 }
                 return await _labb.Update(entity);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error sending data to the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -99,9 +99,9 @@ namespace Labb3_AvanceradDotNet.Controllers
                 }
                 return await _labb.Delete(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error when deleting data in the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
     }

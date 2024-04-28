@@ -22,10 +22,10 @@ namespace Labb3_AvanceradDotNet.Controllers
             {
                 return Ok(await _labb.GetAll());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -41,9 +41,9 @@ namespace Labb3_AvanceradDotNet.Controllers
                 }
                 return Ok(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -59,9 +59,9 @@ namespace Labb3_AvanceradDotNet.Controllers
                 }
                 return Ok(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -77,9 +77,9 @@ namespace Labb3_AvanceradDotNet.Controllers
                 }
                 return Ok(result);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -95,10 +95,10 @@ namespace Labb3_AvanceradDotNet.Controllers
                 var createdPerson = await _labb.Add(newPerson);
                 return CreatedAtAction(nameof(GetPersonById), new { id = createdPerson.PersonId }, createdPerson);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error sending data to the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -118,10 +118,10 @@ namespace Labb3_AvanceradDotNet.Controllers
                 }
                 return await _labb.Update(person);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error sending data to the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
@@ -137,9 +137,9 @@ namespace Labb3_AvanceradDotNet.Controllers
                 }
                 return await _labb.Delete(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error when deleting data in the database");
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
     }
